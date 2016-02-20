@@ -13,7 +13,7 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'gs-messaging-jms'
+    baseName = 'spring-boot-jms'
     version =  '0.1.0'
 }
 
@@ -33,5 +33,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+    gradleVersion = '2.11'
 }
