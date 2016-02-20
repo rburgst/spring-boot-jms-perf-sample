@@ -28,15 +28,6 @@ public class Application {
     Sender sender(JmsTemplate jmsTemplate) {
         return new Sender(jmsTemplate, queueName, sleepTimeInMs);
     }
-//
-//    @Bean
-//        // Strictly speaking this bean is not necessary as boot creates a default
-//    JmsListenerContainerFactory<?> myJmsContainerFactory(ConnectionFactory connectionFactory) {
-//
-//        SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory();
-//        factory.setConnectionFactory(connectionFactory);
-//        return factory;
-//    }
 
     public static void main(String[] args) {
         // Clean out any ActiveMQ data from a previous run
@@ -50,7 +41,7 @@ public class Application {
         for (String profile : activeProfiles) {
             System.out.println("  - " + profile);
         }
-        System.out.println("after run, press key to exit, using queue " + environment.getProperty("jms.queueName"));
+        System.out.println("press CTRL-C to exit, using queue " + environment.getProperty("jms.queueName"));
         try {
             System.in.read();
         } catch (IOException e) {

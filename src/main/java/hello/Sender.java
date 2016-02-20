@@ -10,9 +10,7 @@ import javax.jms.MapMessage;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Sends JMS messages.
- *
- * @author Rainer Burgstaller
+ * Sends 100K JMS messages.
  */
 public class Sender extends Thread {
     private static final Logger logger = LoggerFactory.getLogger(Sender.class);
@@ -42,10 +40,11 @@ public class Sender extends Thread {
         MessageCreator messageCreator = session -> {
             final MapMessage mapMessage = session.createMapMessage();
             mapMessage.setIntProperty("CLIENT_ID", group.get());
-            mapMessage.setString("key", "hallohallohallohallohallohallohallohallohallohallohallohallohallohallohallohallohallohallo");
+            mapMessage.setString("key", "SOME MESSAGE CONTENT, SOME MESSAGE CONTENT, SOME MESSAGE CONTENT, SOME MESSAGE CONTENT");
             return mapMessage;
         };
 
+        // the number of messages to send
         long sendCount = 100000;
         long start = System.currentTimeMillis();
         float messagesPerSecond = 0;
@@ -78,7 +77,6 @@ public class Sender extends Thread {
                 exceptionCount++;
             }
         }
-
     }
 
     private void sleepIfNecessary() {

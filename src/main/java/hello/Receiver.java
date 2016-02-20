@@ -10,11 +10,14 @@ import org.springframework.stereotype.Component;
 
 import javax.jms.MapMessage;
 
+/**
+ * Receives JMS messages from the configured queue using the configured selector.
+ */
 @Component
 @Profile("receiver")
 public class Receiver {
     private static final Logger logger = LoggerFactory.getLogger(Receiver.class);
-    public static final int BUF_SIZE = 100;
+    private static final int BUF_SIZE = 100;
 
     long messageReceived = 0;
     long timestampOfFirstMessage = 0;
